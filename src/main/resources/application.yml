@@ -4,7 +4,7 @@ server:
     include-binding-errors: always
 
 spring:
-  datasource:
+  datasource: registration
     username: user
     password: user
     url: jdbc:sqlserver://EFG-ED0-V01-048;databaseName=registration
