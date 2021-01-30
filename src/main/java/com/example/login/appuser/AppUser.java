@@ -12,35 +12,34 @@ import java.util.Collections;
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
-@Entity
+@Entity (name = "app_users")
 public class AppUser implements UserDetails {
 
 
     @Id
-    @SequenceGenerator(
-            name = "student_sequence",
-            sequenceName ="student_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator ="student_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "first_name", length = 30)
     private String firstName;
 
+    @Column(name = "last_name", length = 50)
     private String lastName;
 
+    @Column(name = "email", length = 80)
     private String email;
 
+    @Column(name = "password", length = 50)
     private String password;
 
+    @Column(name = "app_user_role", length = 50)
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
 
+    @Column(name = "locked")
     private Boolean locked;
 
+    @Column(name = "enabled")
     private Boolean enabled;
 
 
@@ -56,11 +55,67 @@ public class AppUser implements UserDetails {
         this.appUserRole = appUserRole;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(appUserRole.name());
-        return Collections.singletonList(authority);
+
+    public Long getId() {
+        return id;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public AppUserRole getAppUserRole() {
+        return appUserRole;
+    }
+
+    public void setAppUserRole(AppUserRole appUserRole) {
+        this.appUserRole = appUserRole;
+    }
+
+    public Boolean getLocked() {
+        return locked;
+    }
+
+    public void setLocked(Boolean locked) {
+        this.locked = locked;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
 
     @Override
     public String getPassword() {
@@ -72,12 +127,10 @@ public class AppUser implements UserDetails {
         return email;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(appUserRole.name());
+        return Collections.singletonList(authority);
     }
 
     @Override

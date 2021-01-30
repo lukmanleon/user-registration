@@ -16,9 +16,13 @@ spring:
     show-sql: true
     properties:
       hibernate:
-        format_sql: true
         dialect: org.hibernate.dialect.SQLServer2012Dialect
+        format_sql: true
+        show_sql: true
         ddl-auto: create-drop
+        generate-ddl: true
+        hbm2ddl:
+          auto: create
   #mail:
     #host: localhost
     #port: 1025
