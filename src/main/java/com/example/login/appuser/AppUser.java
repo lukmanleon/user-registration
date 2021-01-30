@@ -29,18 +29,18 @@ public class AppUser implements UserDetails {
     @Column(name = "email", length = 80)
     private String email;
 
-    @Column(name = "password", length = 50)
+    @Column(name = "password", length = 70)
     private String password;
 
     @Column(name = "app_user_role", length = 50)
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
 
-    @Column(name = "locked")
-    private Boolean locked;
+    @Column(name = "locked", nullable = true)
+    private Boolean locked = false;
 
-    @Column(name = "enabled")
-    private Boolean enabled;
+    @Column(name = "enabled", nullable = true)
+    private Boolean enabled = false;
 
 
     public AppUser(String firstName,
