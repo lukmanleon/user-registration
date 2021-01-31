@@ -34,4 +34,26 @@ public class RegistrationService {
                         AppUserRole.USER)
                 );
     }
+
+    @Transactional
+    public String confirmToken (String token){
+        ConfirmationToken confirmedToken = confirmationTokenService
+                .getToken(token)
+                .orElseThrow(()-> new IllegalStateException("Token not found."));
+
+        if (confirmedToken.getConfirmedAt() != null){
+            throw new IllegalStateException("Email is already confirmed.");
+        }
+
+        LocalDateTime expiredAt = confirmedToken.getExpiresAt();
+        if ( expiredAt.isBefore(LocalDateTime.now()) ) {
+            throw new IllegalStateException("Token has expired.");
+        }
+
+        confirmationTokenService.setConfirmedAt(token);
+        appUserService.enableAppUser(
+                confirmedToken.getAppUser().getEmail()
+        );
+        return "Confirmed";
+    }
 }

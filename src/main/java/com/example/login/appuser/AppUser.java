@@ -12,7 +12,8 @@ import java.util.Collections;
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
-@Entity (name = "app_users")
+@Entity
+@Table(name = "app_users")
 public class AppUser implements UserDetails {
 
 
