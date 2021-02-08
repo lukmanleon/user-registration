@@ -23,21 +23,22 @@ spring:
         generate-ddl: true
         hbm2ddl:
           auto: create
-  #mail:
-    #host: localhost
-    #port: 1025
-    #username: hello
-    #password: hello
+  # -> mail inbox address https://mailtrap.io
+  mail:
+    host: smtp.mailtrap.io
+    port: 2525
+    username: 16a7cfaadc6e28
+    password: 2a61f836e60d1c
 
-    #properties:
-      #mail:
-        #smtp:
-          #ssl:
-            #trust: "*"
-          #auth: true
-          #starttls:
-            #enable: true
-          #connectiontimeout: 5000
-          #timeout: 3000
-          #writetimeout: 5000
+    properties:
+      mail:
+        smtp:
+          ssl:
+            trust: "*"
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
 

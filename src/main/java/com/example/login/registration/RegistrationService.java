@@ -63,7 +63,7 @@ public class RegistrationService {
         appUserService.enableAppUser(
                 confirmedToken.getAppUser().getEmail()
         );
-        return "Confirmed";
+        return "You have confirmed your email.";
     }
 
     private String buildEmail(String name, String link) {
