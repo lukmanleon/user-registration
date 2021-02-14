@@ -37,8 +37,8 @@ public class AppUser implements UserDetails {
     @Column(name = "password", length = 70)
     private String password;
 
-    @Column(name = "app_user_role", length = 50)
     @Enumerated(EnumType.STRING)
+    @Column(name = "app_user_role", length = 50)
     private AppUserRole appUserRole;
 
     @Column(name = "locked", nullable = true)

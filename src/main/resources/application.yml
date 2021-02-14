@@ -5,10 +5,7 @@ server:
 
 spring:
   datasource:
-    #url: jdbc:sqlserver://EFG-ED0-V01-048;databaseName=registration
     url: jdbc:sqlserver://localhost;databaseName=registration
-    #url: jdbc:sqlserver://Server=127.0.0.1;Database=registration;User Id=user;Password=user;
-    #url: jdbc:sqlserver://127.0.0.1:1433/registration;instance=master;integratedSecurity=true
     username: user
     password: user
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
@@ -23,6 +20,7 @@ spring:
         generate-ddl: true
         hbm2ddl:
           auto: create
+
   # -> mail inbox address https://mailtrap.io
   mail:
     host: smtp.mailtrap.io
@@ -41,4 +39,3 @@ spring:
           connectiontimeout: 5000
           timeout: 3000
           writetimeout: 5000
-
