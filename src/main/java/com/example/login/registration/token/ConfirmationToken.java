@@ -27,7 +27,7 @@ public class ConfirmationToken {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @Column(name = "expires_at", nullable = false)
+    @Column(name = "expires_at", nullable = true)
     private LocalDateTime expiresAt;
 
     @Column(name = "confirmed_at", nullable = true)
@@ -39,12 +39,9 @@ public class ConfirmationToken {
 
     public ConfirmationToken(String token,
                              LocalDateTime createdAt,
-                             LocalDateTime expiresAt,
                              AppUser appUser) {
         this.token = token;
         this.createdAt = createdAt;
-        this.expiresAt = expiresAt;
-        this.confirmedAt = confirmedAt;
         this.appUser = appUser;
     }
 }

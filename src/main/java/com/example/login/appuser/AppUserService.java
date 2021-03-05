@@ -29,7 +29,7 @@ public class AppUserService implements UserDetailsService {
     }
 
     public String signUpUser (AppUser appUser){
-        boolean userExists = appUserRepository.findByEmail(appUser.getEmail()).isPresent();
+        boolean userExists = appUserRepository.findByEmail( appUser.getEmail() ).isPresent();
 
         if (userExists){
             // TODO chek if attributes are the same and if email not confirmed, throw exception or re send
@@ -38,19 +38,14 @@ public class AppUserService implements UserDetailsService {
 
         String encodedPassword = bCryptPasswordEncoder.encode(appUser.getPassword());
         appUser.setPassword(encodedPassword);
-
         appUserRepository.save(appUser);
 
         String token = UUID.randomUUID().toString();
-
         ConfirmationToken confirmationToken = new ConfirmationToken(
                 token,
                 LocalDateTime.now(),
-                LocalDateTime.now().plusMinutes(15),
                 appUser);
-
-        confirmationTokenService.saveConfirmationToken(
-                confirmationToken);
+        confirmationTokenService.saveConfirmationToken(confirmationToken);
 
         return token;
     }

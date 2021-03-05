@@ -56,12 +56,15 @@ public class RegistrationService {
             throw new IllegalStateException("Account is already confirmed.");
         }
 
-        LocalDateTime expiredAt = confirmedToken.getExpiresAt();
-        if ( expiredAt.isBefore(LocalDateTime.now()) ) {
-            throw new IllegalStateException("Token has expired.");
+        if(confirmedToken.getExpiresAt() != null) {
+            LocalDateTime expiredAt = confirmedToken.getExpiresAt();
+            if ( expiredAt.isBefore(LocalDateTime.now()) ) {
+                throw new IllegalStateException("Token has expired.");
+            }
         }
 
         confirmationTokenService.setConfirmedAt(token);
+
         appUserService.enableAppUser(
                 confirmedToken.getAppUser().getEmail()
         );
